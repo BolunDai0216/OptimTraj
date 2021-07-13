@@ -115,7 +115,7 @@ class FiveLinkBiped:
             self.g1, self.g2, self.g3, self.g4, self.g5
         ]
         joint_list = [
-            self.p0, self.p1, self.p2, self.p3, self.p4
+            self.p0, self.p1, self.p2, self.p2, self.p4
         ]
 
         _j_vec = tf.constant([[0., 1., 0.]])
@@ -150,7 +150,7 @@ class FiveLinkBiped:
             self.g1, self.g2, self.g3, self.g4, self.g5
         ]
         joint_list = [
-            self.p0, self.p1, self.p2, self.p3, self.p4
+            self.p0, self.p1, self.p2, self.p2, self.p4
         ]
 
         angular_momentum_mat = tf.zeros([self.batch_size, 0, 10])
@@ -323,11 +323,11 @@ class FiveLinkBiped:
 
         mat_zeros_5 = tf.zeros([self.batch_size, 1, 1])
         # has shape [batch_size, 1, 10]
-        ddG5_mat_1 = tf.concat([ddG5_mat_111, ddG5_mat_112, ddG5_mat_113, ddG5_mat_114, mat_zeros_5,
-                                ddG5_mat_121, ddG5_mat_122, ddG5_mat_123, ddG5_mat_124, mat_zeros_5], axis=2)
+        ddG5_mat_1 = tf.concat([ddG5_mat_111, ddG5_mat_112, mat_zeros_5, ddG5_mat_113, ddG5_mat_114,
+                                ddG5_mat_121, ddG5_mat_122, mat_zeros_5, ddG5_mat_123, ddG5_mat_124], axis=2)
         # has shape [batch_size, 1, 10]
-        ddG5_mat_2 = tf.concat([ddG5_mat_211, ddG5_mat_212, ddG5_mat_213, ddG5_mat_214, mat_zeros_5,
-                                ddG5_mat_221, ddG5_mat_222, ddG5_mat_223, ddG5_mat_224, mat_zeros_5], axis=2)
+        ddG5_mat_2 = tf.concat([ddG5_mat_211, ddG5_mat_212, mat_zeros_5, ddG5_mat_213, ddG5_mat_214,
+                                ddG5_mat_221, ddG5_mat_222, mat_zeros_5, ddG5_mat_223, ddG5_mat_224], axis=2)
         # has shape [batch_size, 2, 10]
         ddG5_mat = tf.concat([ddG5_mat_1, ddG5_mat_2], axis=1)
 
